@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace GuestBookRepos.Views.Account
+namespace GuestBookGit.Views.Account
 {
     public class LoginModel : PageModel
     {

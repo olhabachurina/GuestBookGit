@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GuestBookRepos.Models
+namespace GuestBookGit.Models
 {
     public class RegisterViewModel
     {

@@ -1,4 +1,5 @@
 ﻿using GuestBookGit.Interfaces;
+using GuestBookGit.Models;
 using GuestBookRepos.Models;
 using Microsoft.EntityFrameworkCore;
 

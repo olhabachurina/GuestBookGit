@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GuestBookGit.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace GuestBookRepos.Models
 {
