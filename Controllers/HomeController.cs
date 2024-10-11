@@ -1,32 +1,75 @@
-using GuestBookGit.Models;
+using GuestBookRepos.Interfaces;
+using GuestBookRepos.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace GuestBookGit.Controllers
+namespace GuestBookRepos.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IRepository _repository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IRepository repository)
         {
-            _logger = logger;
+            _repository = repository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var messages = await _repository.GetAllMessagesAsync();
+            return View(messages);
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public async Task<IActionResult> AddMessage([FromBody] MessageViewModel model)
         {
-            return View();
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return Unauthorized("Please log in to add a message.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var user = await _repository.GetUserByIdAsync(userId.Value);
+                var newMessage = new Message
+                {
+                    Id_User = userId.Value,
+                    Content = model.Content,
+                    Email = model.Email,
+                    WWW = model.WWW,
+                    MessageDate = DateTime.Now,
+                    User = user
+                };
+
+                await _repository.AddMessageAsync(newMessage);
+
+                var messages = await _repository.GetAllMessagesAsync();
+                var html = RenderMessagesHtml(messages);
+                return Content(html, "text/html");
+            }
+
+            return BadRequest("Invalid message data.");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        private string RenderMessagesHtml(IEnumerable<Message> messages)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var html = string.Empty;
+            foreach (var message in messages)
+            {
+                html += $@"
+                    <div class='card mb-3'>
+                        <div class='card-header'>
+                            <strong>{message.User.Name}</strong>
+                            <span class='float-right'>{message.MessageDate}</span>
+                        </div>
+                        <div class='card-body'>
+                            <p class='card-text'>{message.Content}</p>
+                            <p class='card-text'><small class='text-muted'>{message.Email} {message.WWW}</small></p>
+                        </div>
+                    </div>";
+            }
+            return html;
         }
     }
 }
