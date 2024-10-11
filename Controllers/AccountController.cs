@@ -1,6 +1,6 @@
 ﻿using Azure.Core;
+using GuestBookGit.Models;
 using GuestBookRepos.Interfaces;
-using GuestBookRepos.Models;
 using GuestBookRepos.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
