@@ -1,8 +1,8 @@
 ﻿
 using GuestBookGit.Interfaces;
 using GuestBookGit.Models;
-using GuestBookRepos.Models;
-using GuestBookRepos.Repositories;
+
+using GuestBookGit.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 

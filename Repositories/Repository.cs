@@ -1,9 +1,8 @@
 ﻿using GuestBookGit.Interfaces;
 using GuestBookGit.Models;
-using GuestBookRepos.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace GuestBookRepos.Repositories
+namespace GuestBookGit.Repositories
 {
     public class Repository : IRepository
     {

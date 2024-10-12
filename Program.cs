@@ -1,6 +1,6 @@
 using GuestBookGit.Interfaces;
 
-using GuestBookRepos.Repositories;
+using GuestBookGit.Repositories;
 using GuestBookRepos.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
