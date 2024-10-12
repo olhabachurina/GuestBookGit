@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using GuestBookGit.Models;
 
-namespace GuestBookRepos.Models
+namespace GuestBookGit.Models
 {
     public class Message
     {

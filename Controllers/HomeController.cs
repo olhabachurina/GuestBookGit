@@ -1,10 +1,11 @@
 using GuestBookGit.Interfaces;
 
+using GuestBookGit.Models;
 using GuestBookRepos.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace GuestBookRepos.Controllers
+namespace GuestBookGit.Controllers
 {
     public class HomeController : Controller
     {
